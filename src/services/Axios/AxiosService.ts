@@ -1,49 +1,50 @@
-import {HttpRequestService} from "@/contracts/interfaces/HttpRequestService";
-import axios from "axios";
+import { HttpRequestService } from '@/contracts/interfaces/HttpRequestService'
+import axios from 'axios'
 
-export class AxiosService implements HttpRequestService{
+export class AxiosService implements HttpRequestService {
   private baseUrl: string
-  constructor() {
-    this.baseUrl = process.env.VUE_APP_API_BASE_URL;
+  constructor () {
+    this.baseUrl = process.env.VUE_APP_API_BASE_URL
   }
-  post(path: string, data: any, options: any = null): any {
+
+  post (path: string, data: any, options: any = null): any {
     return axios.post(`${this.baseUrl}${path}`, data)
       .then(response => {
-        return response.data;
+        return response.data
       })
       .catch(error => {
-        throw error;
-      });
+        throw error
+      })
   }
 
-  put(path: string, data: any, options: any = null): any {
+  put (path: string, data: any, options: any = null): any {
     return axios.put(`${this.baseUrl}${path}`, data)
       .then(response => {
-        return response.data;
+        return response.data
       })
       .catch(error => {
-        throw error;
-      });
+        throw error
+      })
   }
 
-  get(path: string, data: any, options: any = null): any {
+  get (path: string, data: any, options: any = null): any {
     return axios.get(`${this.baseUrl}${path}`, {
       params: data
     }).then(response => {
-      return response.data;
+      return response.data
     })
       .catch(error => {
-        throw error;
-      });
+        throw error
+      })
   }
 
-  delete(path: string, options: any = null): any {
+  delete (path: string, options: any = null): any {
     return axios.delete(`${this.baseUrl}${path}`)
       .then(response => {
-        return response.data;
+        return response.data
       })
       .catch(error => {
-        throw error;
-      });
+        throw error
+      })
   }
 }
