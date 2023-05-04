@@ -1,6 +1,5 @@
 import { HttpRequestService } from '@/contracts/interfaces/HttpRequestService'
 import { AxiosService } from '@/services/Axios/AxiosService'
-
 export class Auth {
   private prefix: string
   constructor (private httpRequestService: HttpRequestService = new AxiosService()) {

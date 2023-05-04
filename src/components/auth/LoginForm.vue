@@ -14,12 +14,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { Auth } from '@/services/api/Auth'
-
 export default defineComponent({
   data () {
     return {
       email: '',
-      password: ''
+      password: '',
+      authService: null
     }
   },
   methods: {
@@ -29,7 +29,11 @@ export default defineComponent({
         email: this.email,
         password: this.password
       }).then((r: any) => {
-        console.log(r)
+        if (r.token) {
+          localStorage.setItem('token', r.token)
+        }
+      }).catch(() => {
+        alert('You entered an incorrect login or password')
       })
     }
   }
