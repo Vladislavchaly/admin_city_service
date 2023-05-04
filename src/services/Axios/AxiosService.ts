@@ -1,49 +1,56 @@
-import {HttpRequestService} from "@/contracts/interfaces/HttpRequestService";
-import axios from "axios";
+import { HttpRequestService } from '@/contracts/interfaces/HttpRequestService'
+import axios, { AxiosInstance } from 'axios'
+import { requestInterceptor } from '@/interceptors/http/axios/request.function'
+import { responseInterceptor } from '@/interceptors/http/axios/response.function'
 
-export class AxiosService implements HttpRequestService{
-  private baseUrl: string
-  constructor() {
-    this.baseUrl = process.env.VUE_APP_API_BASE_URL;
+export class AxiosService implements HttpRequestService {
+  private axios: AxiosInstance
+  constructor () {
+    this.axios = axios.create({
+      baseURL: process.env.VUE_APP_API_BASE_URL
+    })
+    this.axios.interceptors.request.use(requestInterceptor)
+    this.axios.interceptors.response.use(responseInterceptor)
   }
-  post(path: string, data: any, options: any = null): any {
-    return axios.post(`${this.baseUrl}${path}`, data)
+
+  post (path: string, data: any, options: any = null): any {
+    return this.axios.post(`${path}`, data)
       .then(response => {
-        return response.data;
+        return response.data
       })
       .catch(error => {
-        throw error;
-      });
+        throw error
+      })
   }
 
-  put(path: string, data: any, options: any = null): any {
-    return axios.put(`${this.baseUrl}${path}`, data)
+  put (path: string, data: any, options: any = null): any {
+    return this.axios.put(`${path}`, data)
       .then(response => {
-        return response.data;
+        return response.data
       })
       .catch(error => {
-        throw error;
-      });
+        throw error
+      })
   }
 
-  get(path: string, data: any, options: any = null): any {
-    return axios.get(`${this.baseUrl}${path}`, {
+  get (path: string, data: any, options: any = null): any {
+    return this.axios.get(`${path}`, {
       params: data
     }).then(response => {
-      return response.data;
+      return response.data
     })
       .catch(error => {
-        throw error;
-      });
+        throw error
+      })
   }
 
-  delete(path: string, options: any = null): any {
-    return axios.delete(`${this.baseUrl}${path}`)
+  delete (path: string, options: any = null): any {
+    return this.axios.delete(`${path}`)
       .then(response => {
-        return response.data;
+        return response.data
       })
       .catch(error => {
-        throw error;
-      });
+        throw error
+      })
   }
 }

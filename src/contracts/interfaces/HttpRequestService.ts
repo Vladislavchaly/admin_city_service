@@ -1,4 +1,4 @@
-"use strict";
+'use strict'
 export interface HttpRequestService {
   post(path: string, data: any, options: any | null): any
 
