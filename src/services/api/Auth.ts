@@ -1,9 +1,15 @@
+import 'reflect-metadata'
 import { HttpRequestService } from '@/contracts/interfaces/HttpRequestService'
-import { AxiosService } from '@/services/Axios/AxiosService'
-export class Auth {
+import AuthService from '@/contracts/interfaces/AuthService'
+import { inject, injectable } from 'inversify'
+
+@injectable()
+export class Auth implements AuthService {
   private prefix: string
-  constructor (private httpRequestService: HttpRequestService = new AxiosService()) {
+  private httpRequestService: HttpRequestService
+  constructor (@inject('HttpRequestService') httpRequestService: HttpRequestService) {
     this.prefix = 'auth'
+    this.httpRequestService = httpRequestService
   }
 
   login (data: any): any {

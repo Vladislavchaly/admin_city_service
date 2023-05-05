@@ -2,7 +2,8 @@ import { HttpRequestService } from '@/contracts/interfaces/HttpRequestService'
 import axios, { AxiosInstance } from 'axios'
 import { requestInterceptor } from '@/interceptors/http/axios/request.function'
 import { responseInterceptor } from '@/interceptors/http/axios/response.function'
-
+import { injectable } from 'inversify'
+@injectable()
 export class AxiosService implements HttpRequestService {
   private axios: AxiosInstance
   constructor () {
@@ -14,7 +15,7 @@ export class AxiosService implements HttpRequestService {
   }
 
   post (path: string, data: any, options: any = null): any {
-    return this.axios.post(`${path}`, data)
+    return this.axios.post(path, data)
       .then(response => {
         return response.data
       })
@@ -24,7 +25,7 @@ export class AxiosService implements HttpRequestService {
   }
 
   put (path: string, data: any, options: any = null): any {
-    return this.axios.put(`${path}`, data)
+    return this.axios.put(path, data)
       .then(response => {
         return response.data
       })
@@ -34,7 +35,7 @@ export class AxiosService implements HttpRequestService {
   }
 
   get (path: string, data: any, options: any = null): any {
-    return this.axios.get(`${path}`, {
+    return this.axios.get(path, {
       params: data
     }).then(response => {
       return response.data
@@ -45,7 +46,7 @@ export class AxiosService implements HttpRequestService {
   }
 
   delete (path: string, options: any = null): any {
-    return this.axios.delete(`${path}`)
+    return this.axios.delete(path)
       .then(response => {
         return response.data
       })
