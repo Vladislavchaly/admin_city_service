@@ -13,7 +13,9 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { Auth } from '@/services/api/Auth'
+import AuthService from '@/contracts/interfaces/AuthService'
+import container from '@/providers/service-provider'
+
 export default defineComponent({
   data () {
     return {
@@ -24,7 +26,7 @@ export default defineComponent({
   },
   methods: {
     submitForm () {
-      const auth = new Auth()
+      const auth: AuthService = container.get<AuthService>('AuthService')
       auth.login({
         email: this.email,
         password: this.password
