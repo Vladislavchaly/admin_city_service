@@ -7,7 +7,6 @@ import { AxiosService } from '@/services/Axios/AxiosService'
 
 const container: Container = new Container()
 
-container.bind<AuthService>('AuthService').to(Auth)
-container.bind<HttpRequestService>('HttpRequestService').to(AxiosService)
-
+container.bind<AuthService>('AuthService').to(Auth).inSingletonScope()
+container.bind<HttpRequestService>('HttpRequestService').to(AxiosService).inSingletonScope()
 export default container
