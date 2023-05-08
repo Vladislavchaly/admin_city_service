@@ -19,4 +19,9 @@ export class Auth implements AuthService {
   logout (): any {
     return this.httpRequestService.delete('auth/logout/', null)
   }
+
+  async checkToken (token: string): Promise<boolean> {
+    // TODO: add API Request
+    return true
+  }
 }

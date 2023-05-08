@@ -1,19 +1,20 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import AuthLogin from '../views/AuthLogin.vue'
+import AuthLogin from '@/views/auth/AuthLogin.vue'
+import Dashboard from '@/views/Dashboard.vue'
+import { requireAuth } from '@/middleware/auth'
+import container from '@/providers/service-provider'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'home',
-    component: AuthLogin
+    name: 'dashboard',
+    component: Dashboard,
+    meta: { requiresAuth: true }
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/login',
+    name: 'login',
+    component: AuthLogin
   }
 ]
 
@@ -21,5 +22,7 @@ const router = createRouter({
   history: createWebHistory(),
   routes
 })
+
+router.beforeEach(requireAuth(container.get('AuthService')))
 
 export default router
