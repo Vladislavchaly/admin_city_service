@@ -15,13 +15,15 @@
 import { defineComponent } from 'vue'
 import AuthService from '@/contracts/interfaces/AuthService'
 import container from '@/providers/service-provider'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   data () {
     return {
       email: '',
       password: '',
-      authService: null
+      authService: null,
+      router: useRouter()
     }
   },
   methods: {
@@ -33,6 +35,7 @@ export default defineComponent({
       }).then((r: any) => {
         if (r.token) {
           localStorage.setItem('token', r.token)
+          this.router.push({ name: 'dashboard' })
         }
       }).catch(() => {
         alert('You entered an incorrect login or password')
