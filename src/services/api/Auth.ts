@@ -21,7 +21,7 @@ export class Auth implements AuthService {
   }
 
   async checkToken (token: string): Promise<boolean> {
-    //TODO add API Request
+    // TODO: add API Request
     return true
   }
 }
