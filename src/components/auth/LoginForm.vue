@@ -1,14 +1,37 @@
 <template>
-  <div>
-    <h1>Login Form</h1>
-    <form @submit.prevent="submitForm">
-      <label for="email">Email:</label>
-      <input type="email" id="email" v-model="email">
-      <label for="password">Password:</label>
-      <input type="password" id="password" v-model="password">
-      <button type="submit">Login</button>
-    </form>
-  </div>
+    <v-form v-model="valid" @submit.prevent="submitForm">
+        <v-container>
+            <v-row>
+                <v-col
+                        cols="12"
+                        md="12"
+                >
+                    <v-text-field
+                            v-model="email"
+                            :rules="emailRules"
+                            label="E-mail"
+                            required
+                    ></v-text-field>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col
+                        cols="12"
+                        md="12"
+                >
+                    <v-text-field
+                            v-model="password"
+                            type="password"
+                            label="Password"
+                            required
+                    ></v-text-field>
+                </v-col>
+            </v-row>
+            <v-row>
+            <v-btn type="submit" block class="mt-2">Submit</v-btn>
+            </v-row>
+        </v-container>
+    </v-form>
 </template>
 
 <script lang="ts">
@@ -20,7 +43,24 @@ import { useRouter } from 'vue-router'
 export default defineComponent({
   data () {
     return {
+      valid: false,
       email: '',
+      emailRules: [
+        (value: any): string | boolean => {
+          if (value) {
+            return true
+          }
+
+          return 'E-mail is requred.'
+        },
+        (value: string): string | boolean => {
+          if (/.+@.+\..+/.test(value)) {
+            return true
+          }
+
+          return 'E-mail must be valid.'
+        }
+      ],
       password: '',
       authService: null,
       router: useRouter()
@@ -35,7 +75,7 @@ export default defineComponent({
       }).then((r: any) => {
         if (r.token) {
           localStorage.setItem('token', r.token)
-          this.router.push({ name: 'dashboard' })
+          this.router.push({ name: 'main' })
         }
       }).catch(() => {
         alert('You entered an incorrect login or password')
