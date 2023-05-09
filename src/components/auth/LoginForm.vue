@@ -39,7 +39,7 @@ import { defineComponent } from 'vue'
 import AuthService from '@/contracts/interfaces/AuthService'
 import container from '@/providers/service-provider'
 import { useRouter } from 'vue-router'
-
+// TODO: add password rules
 export default defineComponent({
   data () {
     return {

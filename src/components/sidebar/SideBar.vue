@@ -21,10 +21,10 @@
 
         <v-divider></v-divider>
 
-        <v-list density="compact" nav>
-            <v-list-item prepend-icon="mdi-home-city" title="Home" value="home"></v-list-item>
-            <v-list-item prepend-icon="mdi-account" title="My Account" value="account"></v-list-item>
-            <v-list-item prepend-icon="mdi-account-group-outline" title="Users" value="users"></v-list-item>
+        <v-list density="compact">
+            <router-link v-for="item in items" :key="item.title" :to="item.to">
+            <v-list-item :prepend-icon=item.icon :title=item.title></v-list-item>
+            </router-link>
         </v-list>
     </v-navigation-drawer>
 </template>
@@ -40,9 +40,9 @@ export default defineComponent({
     return {
       drawer: true,
       items: [
-        { title: 'Home', icon: 'mdi-home-city' },
-        { title: 'My Account', icon: 'mdi-account' },
-        { title: 'Users', icon: 'mdi-account-group-outline' }
+        { title: 'Home', icon: 'mdi-home-city', to: 'home' },
+        { title: 'My Account', icon: 'mdi-account', to: 'home' },
+        { title: 'Users', icon: 'mdi-account-group-outline', to: 'home' }
       ],
       rail: true
     }
