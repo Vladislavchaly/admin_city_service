@@ -40,9 +40,9 @@ export default defineComponent({
     return {
       drawer: true,
       items: [
-        { title: 'Home', icon: 'mdi-home-city', to: 'home' },
-        { title: 'My Account', icon: 'mdi-account', to: 'home' },
-        { title: 'Users', icon: 'mdi-account-group-outline', to: 'home' }
+        { title: 'Home', icon: 'mdi-home-city', to: '/' },
+        { title: 'My Account', icon: 'mdi-account', to: 'my-account' },
+        { title: 'Users', icon: 'mdi-account-group-outline', to: 'users' }
       ],
       rail: true
     }
