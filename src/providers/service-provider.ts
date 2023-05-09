@@ -1,8 +1,8 @@
 import { Container } from 'inversify'
 import 'reflect-metadata'
-import AuthService from '@/contracts/interfaces/AuthService'
+import AuthService from '@/contracts/interfaces/services/AuthService'
 import { Auth } from '@/services/api/Auth'
-import { HttpRequestService } from '@/contracts/interfaces/HttpRequestService'
+import { HttpRequestService } from '@/contracts/interfaces/services/HttpRequestService'
 import { AxiosService } from '@/services/Axios/AxiosService'
 
 const container: Container = new Container()

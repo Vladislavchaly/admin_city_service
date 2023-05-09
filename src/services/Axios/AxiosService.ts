@@ -1,4 +1,4 @@
-import { HttpRequestService } from '@/contracts/interfaces/HttpRequestService'
+import { HttpRequestService } from '@/contracts/interfaces/services/HttpRequestService'
 import axios, { AxiosInstance } from 'axios'
 import { requestInterceptor } from '@/interceptors/http/axios/request.function'
 import { responseInterceptor } from '@/interceptors/http/axios/response.function'

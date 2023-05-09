@@ -1,8 +1,8 @@
 import 'reflect-metadata'
-import { HttpRequestService } from '@/contracts/interfaces/HttpRequestService'
-import AuthService from '@/contracts/interfaces/AuthService'
+import { HttpRequestService } from '@/contracts/interfaces/services/HttpRequestService'
+import AuthService from '@/contracts/interfaces/services/AuthService'
 import { inject, injectable } from 'inversify'
-import { th } from 'vuetify/locale'
+import User from '@/contracts/interfaces/User'
 
 @injectable()
 export class Auth implements AuthService {
@@ -26,7 +26,7 @@ export class Auth implements AuthService {
     return !!(await this.getAuthUser())
   }
 
-  async getAuthUser () {
+  async getAuthUser (): Promise<User> {
     if (this.authUser) {
       return this.authUser
     }

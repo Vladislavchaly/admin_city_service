@@ -1,4 +1,9 @@
-.main-layout__side-bar nav.v-navigation-drawer {
-  padding: 0;
-  margin: 5px;
+a.router-link-active.router-link-exact-active {
+  color: #015bbb;
+  text-decoration: auto;
+}
+
+.v-navigation-drawer__content a {
+  color: rgba(var(--v-theme-on-surface), var(--v-high-emphasis-opacity));
+  text-decoration: auto;
 }
