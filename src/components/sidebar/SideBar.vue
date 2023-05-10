@@ -28,7 +28,7 @@
         </v-list>
         <template v-slot:append>
             <div class="pa-2">
-                <v-btn icon="mdi-logout-variant">
+                <v-btn icon="mdi-logout-variant" title="Logout"  @click="logout()">
                 </v-btn>
             </div>
         </template>
@@ -52,14 +52,23 @@ export default defineComponent({
         { title: 'My Account', icon: 'mdi-account', to: 'my-account' },
         { title: 'Users', icon: 'mdi-account-group-outline', to: 'users' }
       ],
-      rail: true
+      rail: true,
+      auth: container.get<AuthService>('AuthService'),
+      router: useRouter()
     }
   },
   mounted () {
-    const auth: AuthService = container.get<AuthService>('AuthService')
-    auth.getAuthUser().then((r) => {
+    this.auth.getAuthUser().then((r) => {
       this.adminName = r.name
     })
+  },
+  methods: {
+    logout () {
+      localStorage.removeItem('token')
+      this.auth.logout().then(() => {
+        this.router.push({ name: 'login' })
+      })
+    }
   }
 })
 </script>
