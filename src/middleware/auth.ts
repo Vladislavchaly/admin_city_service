@@ -1,5 +1,5 @@
 import { RouteLocationNormalized, NavigationGuardNext } from 'vue-router'
-import AuthService from '@/contracts/interfaces/AuthService'
+import AuthService from '@/contracts/interfaces/services/AuthService'
 
 export const requireAuth = (authService: AuthService) => async (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
   const token: string | null = localStorage.getItem('token')

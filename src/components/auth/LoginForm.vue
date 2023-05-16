@@ -36,7 +36,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import AuthService from '@/contracts/interfaces/AuthService'
+import AuthService from '@/contracts/interfaces/services/AuthService'
 import container from '@/providers/service-provider'
 import { useRouter } from 'vue-router'
 // TODO: add password rules
@@ -51,7 +51,7 @@ export default defineComponent({
             return true
           }
 
-          return 'E-mail is requred.'
+          return 'E-mail is required.'
         },
         (value: string): string | boolean => {
           if (/.+@.+\..+/.test(value)) {
@@ -75,7 +75,7 @@ export default defineComponent({
       }).then((r: any) => {
         if (r.token) {
           localStorage.setItem('token', r.token)
-          this.router.push({ name: 'main' })
+          this.router.push({ name: 'dashboard' })
         }
       }).catch(() => {
         alert('You entered an incorrect login or password')
