@@ -5,6 +5,7 @@ import Main from '@/views/MainView.vue'
 import { requireAuth } from '@/middleware/auth'
 import container from '@/providers/service-provider'
 import UpdateAccount from '@/views/account/UpdateAccount.vue'
+import UsersContent from '@/views/UsersContent.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -22,6 +23,11 @@ const routes: Array<RouteRecordRaw> = [
         path: '/update-account',
         name: 'update-account',
         component: UpdateAccount
+      },
+      {
+        path: '/users',
+        name: 'users',
+        component: UsersContent
       }
     ]
   },

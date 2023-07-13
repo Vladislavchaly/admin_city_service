@@ -12,7 +12,7 @@ export default class UserService extends ApiService {
     return this.httpRequestService.put(`users/${id}`, data, '')
   }
 
-  public getAll (): User[] {
+  public async getAll (): Promise<User[]> {
     return this.httpRequestService.get('users/', null, null)
   }
 
