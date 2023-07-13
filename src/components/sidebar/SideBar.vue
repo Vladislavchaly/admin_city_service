@@ -49,7 +49,7 @@ export default defineComponent({
       drawer: true,
       items: [
         { title: 'Home', icon: 'mdi-home-city', to: '/' },
-        { title: 'My Account', icon: 'mdi-account', to: 'my-account' },
+        { title: 'My Account', icon: 'mdi-account', to: 'update-account' },
         { title: 'Users', icon: 'mdi-account-group-outline', to: 'users' }
       ],
       rail: true,

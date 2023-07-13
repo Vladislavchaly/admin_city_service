@@ -1,18 +1,12 @@
 import 'reflect-metadata'
-import { HttpRequestService } from '@/contracts/interfaces/services/HttpRequestService'
 import AuthService from '@/contracts/interfaces/services/AuthService'
-import { inject, injectable } from 'inversify'
+import { injectable } from 'inversify'
 import User from '@/contracts/interfaces/User'
+import ApiService from '@/services/api/ApiService'
 
 @injectable()
-export class Auth implements AuthService {
-  private prefix: string
-  private httpRequestService: HttpRequestService
+export class Auth extends ApiService implements AuthService {
   private authUser: any
-  constructor (@inject('HttpRequestService') httpRequestService: HttpRequestService) {
-    this.prefix = 'auth'
-    this.httpRequestService = httpRequestService
-  }
 
   login (data: any): any {
     return this.httpRequestService.post('auth/login', data, null)

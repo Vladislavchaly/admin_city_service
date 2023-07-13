@@ -4,6 +4,7 @@ import Dashboard from '@/views/DashboardContent.vue'
 import Main from '@/views/MainView.vue'
 import { requireAuth } from '@/middleware/auth'
 import container from '@/providers/service-provider'
+import UpdateAccount from '@/views/account/UpdateAccount.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -16,6 +17,11 @@ const routes: Array<RouteRecordRaw> = [
         path: '/',
         name: 'dashboard',
         component: Dashboard
+      },
+      {
+        path: '/update-account',
+        name: 'update-account',
+        component: UpdateAccount
       }
     ]
   },
